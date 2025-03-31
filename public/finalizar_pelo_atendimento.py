@@ -2,9 +2,12 @@ import requests
 import base64
 import json
 import os
+from datetime import datetime 
 from route.dadosDeconexao import tokenIXC, hostIXC
 
-def finalizar_atendimento(arquivo_entrada_json=None):
+data_hora_atual = datetime.now().isoformat()
+
+def finalizar_pelo_atendimento(arquivo_entrada_json):
     host = hostIXC
     token = tokenIXC
     
@@ -34,8 +37,15 @@ def finalizar_atendimento(arquivo_entrada_json=None):
             
             payload_mensagem = {
                 "id_ticket": str(ticket_id),
-                "mensagem": ticket.get("mensagem", "Atendimento finalizado via script"),
-                "su_status": ticket.get("su_status", "S")
+                "data":"CURRENT_TIMESTAMP",
+                'mensagens_nao_lida_cli': 'Atendimento finalizado via script.',
+                "operador": "",
+                'su_status': 'S',
+                "mensagem": "Atendimento finalizado via script",
+                "visibilidade_mensagens": "PU",
+                "existe_pendencia_externa": "0",
+                "id_evento_status": "0",
+                "ultima_atualizacao": data_hora_atual
             }
             
             response = requests.post(

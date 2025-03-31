@@ -14,22 +14,17 @@ def obter_dados_atendimento(arquivo_saida_json):
         'query': '0',
         'oper': '>',
         'page': '1',
-        'rp': '1',
+        'rp': '6000',
         'grid_param': json.dumps([
             {
                 "TB": "su_status",
                 "OP": "=",
-                "P": "EP"
+                "P": "P"
             },
             {
                 "TB": "ultima_atualizacao",
                 "OP": "<",
-                "P": "2022-12-31 00:00:00"
-            },
-            {
-                "TB": "titulo",
-                "OP": "=",
-                "P": "FALHA EXTERNA (ROMP DE FIBRA)"
+                "P": "2025-01-01 00:00:00"
             }
         ]),
         'sortname': 'su_ticket.id',
