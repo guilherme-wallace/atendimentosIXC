@@ -8,7 +8,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
     host = hostIXC
     token = tokenIXC
     
-    # Caminhos dos arquivos
     caminho_pasta = os.path.dirname(os.path.abspath(__file__))
     caminho_tickets = os.path.join(arquivo_tickets)
     caminho_saida = os.path.join(arquivo_saida)
@@ -20,7 +19,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
     }
 
     try:
-        # 1. Ler os tickets do arquivo JSON
         with open(caminho_tickets, 'r', encoding='utf-8') as f:
             tickets = json.load(f)
         
@@ -28,7 +26,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
             print("Nenhum ticket encontrado no arquivo.")
             return []
         
-        # 2. Para cada ticket, buscar as OS relacionadas
         todas_os = []
         
         for ticket in tickets:
@@ -36,7 +33,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
             if not ticket_id:
                 continue
             
-            # Consulta as OS para o ticket específico
             url = f"https://{host}/webservice/v1/su_oss_chamado"
             payload = {
                 'qtype': 'su_oss_chamado.id_ticket',
@@ -48,7 +44,7 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
                     {
                         "TB": "su_oss_chamado.status",
                         "OP": "!=",
-                        "P": "F"  # OS não finalizadas
+                        "P": "F"  
                     }
                 ]),
                 'sortname': 'su_oss_chamado.id',
@@ -60,7 +56,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
             
             os_data = response.json()
             
-            # Adiciona informações adicionais sobre o ticket relacionado
             for os_item in os_data.get('registros', []):
                 os_item['ticket_relacionado'] = {
                     'id_ticket': ticket_id,
@@ -68,7 +63,6 @@ def obter_dados_OS(arquivo_tickets, arquivo_saida):
                 }
                 todas_os.append(os_item)
         
-        # 3. Salva as OS encontradas
         with open(caminho_saida, 'w', encoding='utf-8') as f:
             json.dump(todas_os, f, ensure_ascii=False, indent=4)
         

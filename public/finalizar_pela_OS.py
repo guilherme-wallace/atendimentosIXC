@@ -27,17 +27,14 @@ def finalizar_pela_OS(arquivo_entrada_json):
             return
         
         for ticket in tickets:
-            # Obtém o ID da OS do campo "id"
             os_id = ticket.get('id')
             if not os_id:
                 print(f"OS sem ID encontrada: {ticket}")
                 continue
             
-            # Formata a data atual no formato DD/MM/YYYY HH:MM:SS
             data_hora_atual = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
             
-            # Usa a data de abertura como data_inicio se existir
-            data_inicio = data_hora_atual  # Valor padrão é agora
+            data_inicio = data_hora_atual  
             if ticket.get('data_abertura'):
                 try:
                     dt_abertura = datetime.strptime(ticket['data_abertura'], '%Y-%m-%d %H:%M:%S')
@@ -47,9 +44,8 @@ def finalizar_pela_OS(arquivo_entrada_json):
             
             url = f"https://{host}/webservice/v1/su_oss_chamado_fechar"
             
-            # Payload ajustado com o campo que a API espera para ID da OS
             payload = {
-                "id_chamado": str(os_id),  # Alterado de "id_ticket" para "id"
+                "id_chamado": str(os_id),
                 "data_inicio": data_inicio,
                 "data_final": data_hora_atual,
                 "mensagem": "Atendimento finalizado via script",
