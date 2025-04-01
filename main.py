@@ -23,12 +23,12 @@ def main():
         obter_dados_atendimento(arquivo_saida_pega)
         logging.info(f"Dados do Atendimento obtidos e salvos em {arquivo_saida_pega}.")
 
-        obter_dados_OS(tickets_finalizados, tickets_OS_abertos)
+        #obter_dados_OS(tickets_finalizados, tickets_OS_abertos)
         logging.info(f"Dados da OS obtidos e salvos em {tickets_OS_abertos}.")
 
         #finalizar_pela_OS(tickets_OS_abertos)
 
-        finalizar_pelo_atendimento(tickets_finalizados)
+        #finalizar_pelo_atendimento(tickets_finalizados)
         logging.info(f"Script finalizado")
     except Exception as e:
         logging.error(f"Erro durante a execução do script: {e}")

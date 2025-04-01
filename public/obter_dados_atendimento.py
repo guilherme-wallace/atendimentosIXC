@@ -19,7 +19,7 @@ def obter_dados_atendimento(arquivo_saida_json):
             {
                 "TB": "su_status",
                 "OP": "=",
-                "P": "P"
+                "P": "EP"
             },
             {
                 "TB": "ultima_atualizacao",
