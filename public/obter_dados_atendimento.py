@@ -22,9 +22,14 @@ def obter_dados_atendimento(arquivo_saida_json):
                 "P": "EP"
             },
             {
+                "TB": "titulo",
+                "OP": "=",
+                "P": "MIGRAÇÃO"
+            },
+            {
                 "TB": "ultima_atualizacao",
                 "OP": "<",
-                "P": "2025-01-01 00:00:00"
+                "P": "2025-02-01 00:00:00"
             }
         ]),
         'sortname': 'su_ticket.id',
