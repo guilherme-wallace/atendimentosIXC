@@ -1,4 +1,4 @@
-# public/abrir_atendimento_lote.py
+# public/abrir_atendimento_lote.py 
 import requests
 import base64
 import json
@@ -23,7 +23,7 @@ def abrir_atendimentos_csv(arquivo_csv):
             'Content-Type': 'application/json'
         }
 
-        mensagem_padrao = "Contrato cancelado por inadimplência, favor verificar se possui equipamentos para serem recolhidos. -> Atendimento gerado via Script."
+        mensagem_padrao = "Contrato cancelado por inadimplência, favor verificar se possui equipamentos para serem recolhidos. -> Atendimento gerado via Script. "
         titulo_padrao = "RECOLHER EQUIPAMENTOS"
 
         with open(arquivo_csv, mode='r', encoding='utf-8-sig') as f:
