@@ -83,8 +83,8 @@ def main():
 
 
         # 1. Define o período (formato 'YYYY-MM-DD')
-        data_inicio_filtro = "2025-01-01"
-        data_fim_filtro = "2025-10-29"
+        data_inicio_filtro = "2023-01-01"
+        data_fim_filtro = "2024-12-31"
 
         arquivo_csv_original = f'{caminho}src/IXC_inadimplente_sem_recolhimento.csv'
         arquivo_csv_filtrado = f'{caminho}src/clientes_filtrados_para_abertura.csv'
@@ -107,7 +107,7 @@ def main():
 
         #finalizar_pelo_atendimento(tickets_finalizados)
         
-        # 4. Nova função para abrir atendimentos em lote
+        # 4. Abrir atendimentos em lote
         if arquivo_para_processar:
             abrir_atendimentos_csv(arquivo_para_processar)
             logging.info(f"Processo de abertura de tickets (filtrado) do arquivo {arquivo_para_processar}.")
